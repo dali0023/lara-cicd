@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                git 'https://github.com/dali0023/lara-cicd.git'
                 sh 'composer install'
                 sh 'cp .env.example .env'
                 sh 'php artisan key:generate'
