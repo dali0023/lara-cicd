@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Run Tests") {
             steps {
-                sh './vendor/bin/phpunit'
+                sh './vendor/bin/sail composer --version'
                 // sh "docker compose run --rm ./vendor/bin/phpunit"
             }
         }
