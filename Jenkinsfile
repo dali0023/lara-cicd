@@ -9,7 +9,8 @@ pipeline {
         }
         stage("Run Tests") {
             steps {
-                sh './vendor/bin/sail artisan test'
+                // sh './vendor/bin/sail artisan test'
+                sudo docker exec -i php_laravel vendor/bin/phpunit
                 // sh "docker compose run --rm ./vendor/bin/phpunit"
             }
         }
