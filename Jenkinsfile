@@ -3,7 +3,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo 'Hello world, this is multibranch pipeline for Dev branch'
+                git 'https://github.com/dali0023/lara-cicd.git'
+                sh 'composer install'
+                sh 'cp .env.example .env'
+                sh 'php artisan key:generate'
             }
         }
         stage('test') {
