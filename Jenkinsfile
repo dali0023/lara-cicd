@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Run Composer Install") {
             steps {
-                sh 'docker run --rm composer install'
+                sh '/usr/bin/docker-compose run --rm composer install'
                 // sh 'composer install'
             }
         } 
