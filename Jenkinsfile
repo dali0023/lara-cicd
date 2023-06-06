@@ -1,21 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('build') {
+        stage("Start Docker") {
             steps {
-                sh 'composer install'
-                sh 'cp .env.example .env'
-                sh 'php artisan key:generate'
-            }
-        }
-        stage('test') {
-            steps {
-                echo 'testing Dev...'
-            }
-        }
-        stage('deploy') {
-            steps {
-                echo 'deploying Dev...'
+                sh 'docker compose up -d --no-color --wait'
+                sh 'docker compose ps'
             }
         }
     }
