@@ -7,5 +7,11 @@ pipeline {
                 sh 'docker compose ps'
             }
         }
+        stage("Run Composer Install") {
+            steps {
+                sh 'docker compose run --rm composer install'
+                // sh 'composer install'
+            }
+        } 
     }
 } 
