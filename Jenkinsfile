@@ -7,11 +7,11 @@ pipeline {
                 sh 'docker compose ps'
             }
         }
-        stage("Run Composer Install") {
+        stage("Run Tests") {
             steps {
-                sh 'docker compose run composer install'
-                // sh 'composer install'
+                sh 'docker compose run --rm artisan test'
+                // sh "docker compose run --rm ./vendor/bin/phpunit"
             }
-        } 
+        }
     }
 } 
