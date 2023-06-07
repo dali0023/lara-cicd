@@ -27,15 +27,17 @@ pipeline {
                 sh 'docker compose ps'
             }
         }
-        stage("Run Composer Install") {
-            steps {
-                sh 'docker compose run --rm composer install'
-                // sh 'composer install'
-            }
-        }            
+        // stage("Run Composer Install") {
+        //     steps {
+        //         // sh 'docker compose run --rm composer install'
+        //         // sh 'composer install'
+        //         sh './vendor/bin/sail php artisan test'
+        //     }
+        // }            
         stage("Run Tests") {
             steps {
-                sh 'docker compose run --rm artisan test'
+                // sh 'docker compose run --rm artisan test'
+                sh './vendor/bin/sail php artisan test'
                 // sh "docker compose run --rm ./vendor/bin/phpunit"
             }
         }
