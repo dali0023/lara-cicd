@@ -27,18 +27,22 @@ pipeline {
                 sh 'docker compose ps'
             }
         }
-        // stage("Run Composer Install") {
-        //     steps {
-        //         // sh 'docker compose run --rm composer install'
-        //         // sh 'composer install'
-        //         sh './vendor/bin/sail php artisan test'
-        //     }
-        // }            
+        stage("Populate .env file") {
+                steps {
+                    dir("/Users/lioy/.jenkins/workspace/envs/laravel-test") {
+                        fileOperations([fileCopyOperation(excludes: '', flattenFiles: true, includes: '.env', targetLocation: "${WORKSPACE}")])
+                    }
+                }
+            }
+        stage("Run Composer Install") {
+            steps {
+                sh 'docker compose run --rm composer install'
+                sh 'docker compose run --rm artisan key:generate'
+            }
+        }
         stage("Run Tests") {
             steps {
-                // sh 'docker compose run --rm artisan test'
-                sh './vendor/bin/sail php artisan test'
-                // sh "docker compose run --rm ./vendor/bin/phpunit"
+                sh 'docker compose run --rm artisan test'
             }
         }
     }
